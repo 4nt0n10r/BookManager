@@ -1,0 +1,21 @@
+{% extends '../base/base.html' %}
+
+{% block content %}
+<main>
+    <div class="max-w-md mx-auto p-6 bg-white mt-4 rounded-lg shadow-md">
+        <h2 class="text-2xl font-semibold mb-4">Crear cuenta</h2>
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="mb-4">
+                <label for="{{ field.name }}" class="block text-gray-700">{{ field.label_tag }}</label>
+                {{ field }}
+            </div>
+            {% endfor %}
+            <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                Crear cuenta
+            </button>
+        </form>
+    </div>
+</main>
+{% endblock %}

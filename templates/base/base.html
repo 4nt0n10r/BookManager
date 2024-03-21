@@ -1,0 +1,42 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{title}}</title>
+        {% load static %}
+        {% tailwind_css %}
+</head>
+<body>
+    <nav class="bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <a href="#" class="text-white font-bold text-xl">Mi Logo</a>
+                </div>
+                <div class="hidden md:block">
+                    {% if not user.is_authenticated %}
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="{% url 'index' %}" class="text-gray-300 hover:text-white">Inicio</a>
+                        <a href="#" class="text-gray-300 hover:text-white">Acerca de</a>
+                        <a href="#" class="text-gray-300 hover:text-white">Servicios</a>
+                        <a href="#" class="text-gray-300 hover:text-white">Contacto</a>
+                        <a href="{% url 'signin' %}" class="text-gray-300 hover:text-white">Iniciar Sesión</a>
+                    </div>
+                    {% else %}
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="{% url 'books' %}" class="text-gray-300 hover:text-white">Libros</a>
+                        <a href="{% url 'authors' %}" class="text-gray-300 hover:text-white">Autores</a>
+                        <a href="{% url 'genders' %}" class="text-gray-300 hover:text-white">Generos</a>
+                        <form method="post" action="{% url 'logout' %}">{% csrf_token %}<button class="text-gray-300 hover:text-white" type="submit">Cerrar Sesión</button></form>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
