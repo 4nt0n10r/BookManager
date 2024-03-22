@@ -2,21 +2,31 @@
 
 {% block content %}
     <main>
-        <div class="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
-            <h2 class="text-2xl font-semibold mb-4">Crear libro</h2>
-            <form method="post">
+        <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+            <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+              <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-white">Añadir un libro</h2>
+            </div>
+            <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+              <form class="space-y-6" action="#" method="POST">
                 {% csrf_token %}
                 {% for field in form %}
-                <div class="mb-4">
-                    <label for="{{ field.name }}" class="block text-gray-700">{{ field.label_tag }}</label>
+                <div>
+                  <label for="{{ field.name }}" class="block text-sm font-medium leading-6 text-white">{{ field.label }}</label>
+                  <div class="mt-2">
                     {{ field }}
+                  </div>
                 </div>
                 {% endfor %}
-                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                    Crear libro
-                </button>
-            </form>
-        </div>
-        
+                <div>
+                  <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Añadir libro</button>
+                </div>
+              </form>
+          
+              <p class="mt-10 text-center text-sm text-gray-400">
+                ¿No quieres añadir ningún libro?
+                <a href="{% url 'books' %}" class="font-semibold leading-6 text-indigo-400 hover:text-indigo-300">Volver</a>
+              </p>
+            </div>
+          </div>
     </main>
 {% endblock %}

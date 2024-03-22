@@ -1,0 +1,16 @@
+{% load static tailwind_tags %}
+{% load static %}
+{% tailwind_css %}
+<select class="bg-red-800" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %}>
+    {% for group, options, index in widget.optgroups %}
+        {% if group %}
+            <optgroup label="{{ group }}">
+        {% endif %}
+        {% for option in options %}
+            <option value="{{ option.value }}" {% include "django/forms/widgets/attrs.html" with widget=option %}>{{ option.label }}</option>
+        {% endfor %}
+        {% if group %}
+            </optgroup>
+        {% endif %}
+    {% endfor %}
+</select>

@@ -1,0 +1,4 @@
+{% load static tailwind_tags %}
+{% load static %}
+{% tailwind_css %}
+<option class="bg-red-600" value="{{ widget.value }}" {% include "django/forms/widgets/attrs.html" with widget=option %}>{{ widget.label }}</option>
