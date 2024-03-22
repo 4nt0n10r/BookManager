@@ -76,4 +76,5 @@ class SignupView(FormView):
 
 
 class SignOutView(LogoutView):
-    next = 'index'
+    def get_success_url(self):
+        return reverse_lazy('signin')
